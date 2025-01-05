@@ -1,0 +1,221 @@
+@mixin stylesheet($mainAcrylic, $secondaryAcrylic, $hovAcrylic, $bgCol, $txtCol, $shadowColor, $bgCol2, $btnColor, $btnHovColor) {
+    .draggable {
+        -webkit-app-region: drag;
+    }
+    
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: $txtCol;
+    }
+    
+    #titleBar {
+        background-color: $mainAcrylic;
+        font-size: 15px;
+        
+        ::selection {
+            background-color: none;
+        }
+        
+        img {
+            height: 20px;
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        tr > td {
+            padding: 15px;
+            transition: 200ms ease-in-out;
+            cursor: pointer;
+            
+            * {
+                cursor: pointer;
+            }
+            
+            &:nth-child(2) {
+                width: 75%;
+            }
+            
+            &.tbBttn:hover {
+            background-color: $hovAcrylic;
+
+                &:last-child {
+                    background-color: #f00a;
+                }
+            }
+        }
+    }  
+
+    #title {
+        background-color: $mainAcrylic;
+
+        * {
+            margin: 0;
+        }
+
+        padding: 15px;
+    }
+
+    #baseInput {
+        background-color: $bgCol;
+        padding: 30px;
+
+        input {
+            width: calc(100% - 60px);
+            padding: 15px 30px;
+            display: block;
+            margin: auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: large;
+            border: 1px solid $txtCol;
+            background-color: $bgCol2;
+            transition: 0.2s;
+            color: $txtCol;
+
+            &:hover {
+                border: 1px solid deepskyblue;
+            }
+            
+            &:focus {
+                outline: none;
+                border: 1px solid orange;
+            }
+            
+            & ~ .baseBtn {
+                width: 20%;
+                padding: 10px 15px;
+                display: inline-block;
+                margin-top: 5px;
+                background-color: $btnColor;
+                cursor: pointer;
+                text-align: center;
+                transition: 0.2s;
+                
+                &::selection {
+                    background-color: transparent;
+                }
+                
+                &:hover {
+                    background-color: $btnHovColor;
+                }
+                
+                &.toggled {
+                    background-color: deepskyblue;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    #extendedInput {
+        background-color: $bgCol2;
+        color: $txtCol;
+        box-shadow: 0 -2px 15px 0 $shadowColor inset;
+        padding: 0;
+        height: 0;
+        transition: 0.5s ease-in-out;
+        overflow: hidden;
+        filter: blur(1pt);
+        
+        &.shown {
+            height: calc(1em + 30px + 1em + 20px);
+            padding: 30px;
+            filter: blur(0);
+        }
+        
+        &:hover {
+            box-shadow: 0 -1px 10px $shadowColor inset;
+        }
+        
+        & > #flexWrap {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            
+            & > div {
+                display: flex;
+                //background-color: #f00;
+                margin: 15px;
+                flex-flow: row;
+                cursor: pointer;
+                
+                .extButtn {
+                    padding: 10px;
+                    border: lightskyblue 2px solid;
+                    border-radius: 4px;
+                    transition: 0.5s;
+                    
+                    &:hover {
+                        border: darken(lightskyblue, 20%) 2px solid;
+                    }
+                    
+                    &.selected {
+                        background-color: orange;
+                        border-color: orange;
+                        
+                        &:hover {
+                            border: darken(orange, 20%) 2px solid;
+                        }
+                    }
+                }
+                
+                .extLabel {
+                    padding-left: 5px;
+                }
+            }
+        }
+        
+        #pathControl {
+            display: block;
+            font-size: 1em;
+            padding: 10px 15px;
+            width: calc(100% - 30px);
+            border-radius: 3px;
+            border: solid $txtCol 1px;
+        }
+    }
+
+    #statusBar {
+        background-color: $secondaryAcrylic;
+        padding: 2px 3px;
+        display: flex;
+        width: calc(100% - 6px);
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        color: rgb(70, 70, 70);
+        
+        #currentDirec {
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 3;
+        }
+        
+        #status {
+            text-align: center;
+            flex-grow: 1;
+            
+            &.warn {
+                color: red;
+                text-transform: uppercase;
+            }
+            
+        }
+        
+        #currentFolders{
+            flex-grow: 3;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            text-align: right;
+        }
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    @include stylesheet(#fffa, #fffc,#fffd, #fff, #000, lightgrey, #fff, #dbdbdb, silver)
+}
+
+@media (prefers-color-scheme: dark) {
+    @include stylesheet(#000a, #000c,#000d, #111, #fff, #000, #0b0b0b, #555, #666)
+}

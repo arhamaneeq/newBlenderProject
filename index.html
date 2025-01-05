@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Create a New Blender Project</title>
+
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body id="bodyElement">
+    <div id="titleBar" class="acrylic">
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="images\blender_logo.png" alt="" class="draggable"></td>
+            <td class="draggable"></td>
+            <td class="tbBttn" onclick="windowBehaviour(1)">&mdash;</td>
+            <td class="tbBttn" onclick="windowBehaviour(0)">&times;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="title" class="draggable">
+      <h1>Create a New Blender Project</h1>
+    </div>
+    <div id="extendedInput" class="">
+      <div id="flexWrap">
+        <div class="extWrap" onclick="changeProperty(this)">
+          <div class="extButtn"></div>
+          <div class="extLabel">Assets</div>
+        </div>
+        <div class="extWrap" onclick="changeProperty(this)">
+          <div class="extButtn"></div>
+          <div class="extLabel">References</div>
+        </div>
+        <div class="extWrap" onclick="changeProperty(this)">
+          <div class="extButtn"></div>
+          <div class="extLabel">Renders</div>
+        </div>
+        <div class="extWrap" onclick="changeProperty(this)">
+          <div class="extButtn"></div>
+          <div class="extLabel">Textures</div>
+        </div>
+      </div>
+      <div id="pathControlWrap">
+        <input type="text" id="pathControl" onkeyup="changeProperty(this, 1);checkFolder()" pattern="[a-zA-z]:*">
+      </div>
+    </div>
+    <div id="baseInput">
+      <input type="text" id="folderName" placeholder="Project Name" onkeyup="checkFolder()">
+      <div id="submit" class="baseBtn" onclick="createBlenderProject()" onchange="changeProperty(this, 1)">
+        Create Project &#128077;&#127995;
+      </div>
+      <script>
+        function openMoreOptions(emnt) {
+          emnt.classList.toggle("toggled")
+          document.getElementById("extendedInput").classList.toggle("shown")
+        }
+      </script>
+      <div id="dropDown" class="baseBtn" onclick="openMoreOptions(this)">
+        Settings &#9881;&#65039;
+      </div>
+    </div>
+    <div id="statusBar">
+      <div id="currentDirec">
+        haaaaaaa
+      </div>
+      <div id="status" class="warn">
+        haaaaaaa
+      </div>
+      <div id="currentFolders">
+        haaaaaaa
+      </div>
+    </div>
+    
+    <script defer src="./renderer.js"></script>
+  </body>
+</html>
